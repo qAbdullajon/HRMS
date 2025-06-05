@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Calendar, ChevronDown, Users, Briefcase, Clock, MapPin, UserCheck, Triangle, ChevronLeft, ChevronRight, EllipsisVertical } from 'lucide-react';
 
 interface AttendanceData {
