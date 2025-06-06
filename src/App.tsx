@@ -4,7 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Dashboard, Employees, ForgotPassword, Login, ResetPasswordPage, VerifyPage } from './modules';
+import { Dashboard, Employees, EmployeesAdd, ForgotPassword, Login, ResetPasswordPage, StepFour, StepOne, StepThree, StepTwo, VerifyPage } from './modules';
 import MainLayout from './layout/mainLayout';
 
 const index = () => {
@@ -19,6 +19,12 @@ const index = () => {
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Dashboard />} />
           <Route path='/employees' element={<Employees />} />
+          <Route path='/employees/add' element={<EmployeesAdd />}>
+            <Route index element={<StepOne />} />
+            <Route path="/employees/add/step-two" element={<StepTwo />} />
+            <Route path="/employees/add/step-three" element={<StepThree />} />
+            <Route path="/employees/add/step-four" element={<StepFour />} />
+          </Route>
         </Route>
       </Route>
     )

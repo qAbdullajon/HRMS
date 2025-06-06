@@ -1,6 +1,11 @@
-import { Apple, Bell, Briefcase, CalendarDays, ChevronDown, ClipboardList, Home, Moon, Search, Settings, Sun, Users } from "lucide-react";
+import { Apple, Bell, Briefcase, CalendarDays, ChevronDown, ClipboardList, Home, Loader, Moon, Search, Settings, Sun, Users } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import { NavLink, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import $api from "@/http/api";
+import { useDispatch, useSelector } from "react-redux";
+import { setUnauthorized } from "@/features/auth/authSlice";
+import type { RootState } from "@/app/store";
 
 const menuItems = [
   { icon: <Home className="w-5 h-5" />, label: "Dashboard", path: "/" },
@@ -12,10 +17,36 @@ const menuItems = [
 ];
 
 export default function MainLayout() {
+  const dispatch = useDispatch()
+  const isUnauthorized = useSelector((state: RootState) => state.auth.isUnauthorized);
+
   const { theme, setTheme } = useTheme()
+  const [loading, setLoading] = useState(false)
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
+
+  useEffect(() => {
+    const getUserMe = async () => {
+      setLoading(true)
+      try {
+        const res = await $api.get('/auth/user/me')
+        if (res.status === 200) {
+          dispatch(setUnauthorized(true))
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false)
+      }
+    }
+    getUserMe()
+  }, [])
+
+  if (loading) return <div className="h-screen flex items-center justify-center animate-spin">
+    <Loader />
+  </div>
+  if (!isUnauthorized) return null
   return (
     <div className="flex min-h-screen dark:bg-[#16151c] text-gray-800">
       {/* Sidebar */}

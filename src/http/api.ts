@@ -22,11 +22,13 @@ $api.interceptors.response.use(
       originalRequest._isRetry = true;
 
       try {
-        const { data } = await $axios.get("/auth/refresh");
+        const { data } = await $axios.get("/auth/refresh-token");
+        console.log(data);
+        
         localStorage.setItem("accessToken", data.accessToken);
         return $api.request(originalRequest);
       } catch (error) {
-        console.log("Not authorized");
+        // window.location.href = "/login";
       }
     }
 
