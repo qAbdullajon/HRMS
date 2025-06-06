@@ -28,7 +28,7 @@ $api.interceptors.response.use(
         localStorage.setItem("accessToken", data.accessToken);
         return $api.request(originalRequest);
       } catch (error) {
-        // window.location.href = "/login";
+        window.location.href = "/login";
       }
     }
 
