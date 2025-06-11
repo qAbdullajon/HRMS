@@ -43,12 +43,16 @@ export default function MainLayout() {
     getUserMe()
   }, [])
 
-  if (loading) return <div className="h-screen flex items-center justify-center animate-spin">
-    <Loader />
-  </div>
+  if (loading) return (
+    <div className="fixed inset-0 bg-white dark:bg-[#16151c] flex items-center justify-center z-50">
+      <Loader className="animate-spin" />
+    </div>
+  )
+  
   if (!isUnauthorized) return null
+  
   return (
-    <div className="flex min-h-screen dark:bg-[#16151c] text-gray-800">
+    <div className="flex min-h-screen w-full dark:bg-[#16151c] text-gray-800 overflow-hidden">
       {/* Sidebar */}
       <aside className="w-64 bg-white flex flex-col justify-between">
         <div>
@@ -68,7 +72,6 @@ export default function MainLayout() {
         ${isActive ? "bg-[#7152F30D] text-primary-color" : "text-gray-700 hover:bg-[#7152F30D] hover:text-primary-color"}`
                 }
               >
-                {/* isActive ni shu yerda ham ishlating */}
                 {({ isActive }) => (
                   <>
                     <div
@@ -82,8 +85,6 @@ export default function MainLayout() {
               </NavLink>
             ))}
           </nav>
-
-
         </div>
         <div className="p-4 flex justify-between items-center max-w-[220px] mx-auto w-full">
           <button onClick={toggleTheme} className={`${theme === "dark" ? "bg-primary-color text-white" : "text-black"} flex items-center gap-2 text-sm py-[13px] px-[18px] rounded-md`}>
@@ -97,7 +98,7 @@ export default function MainLayout() {
         </div>
       </aside>
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-hidden">
         <header className="flex justify-between items-center px-6 py-4 bg-white sticky top-0 z-30 shadow-sm">
           <div>
             <p className="text-xl font-semibold flex items-center gap-1">
@@ -141,7 +142,6 @@ export default function MainLayout() {
         <main className="flex-1 overflow-auto p-6 bg-gray-50">
           <Outlet />
         </main>
-
       </div>
     </div>
   );
