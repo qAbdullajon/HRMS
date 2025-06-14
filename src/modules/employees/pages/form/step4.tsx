@@ -10,8 +10,8 @@ import { resetStepOne } from '@/features/employees/step1';
 import { resetStepTwo } from '@/features/employees/step2';
 import { resetDocuments } from '@/features/employees/step3'; // Updated to use resetDocuments
 import { resetStepFour, updateStepFourValues } from '@/features/employees/step4';
-import { useEmployeeCreate, useUpdateEmployee } from '../hooks/useEmployee';
-import type { EmployeeType } from '../types';
+import { useEmployeeCreate, useUpdateEmployee } from '../../hooks/useEmployee';
+import type { EmployeeType } from '../../types';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Noto‘g‘ri email manzili.' }),

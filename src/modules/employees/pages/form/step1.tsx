@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
-import type { EmployeeType } from '../types';
+import type { EmployeeType } from '../../types';
 
 const formSchema = z.object({
   firstName: z.string().min(3, { message: 'First name must be at least 3 characters.' }),

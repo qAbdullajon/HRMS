@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { updateStepTwoValues } from '@/features/employees/step2';
-import type { EmployeeType } from '../types';
+import type { EmployeeType } from '../../types';
 
 const formSchema = z.object({
   employeeid: z.string().min(1, { message: 'Employee ID is required.' }),

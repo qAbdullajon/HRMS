@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Eye, UploadCloud, X } from 'lucide-react';
 import { addDocuments, removeDocument } from '@/features/employees/step3';
-import type { TypeEmployee, FileWithMeta } from '../types';
+import type { TypeEmployee, FileWithMeta } from '../../types';
 
 type DocumentField = 'appointmentLetter' | 'relivingLetter' | 'salarySlips' | 'experienceLetter';
 

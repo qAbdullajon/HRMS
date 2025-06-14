@@ -15,13 +15,13 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { useNavigate } from 'react-router-dom';
-import { useDeleteEmployee, useGetEmployee } from '../hooks/useEmployee';
+import { useDeleteEmployee, useGetEmployee } from '../../hooks/useEmployee';
 import { useDispatch } from 'react-redux';
 import { openFilter } from '@/features/employees/filter';
-import FilterModal from './filter';
+import FilterModal from '../form/filter';
 import ConfirmLeaveModal from '@/components/confirm-leave-modal';
 import { setIsEdit, updateStepOne } from '@/features/employees/step1';
-import type { TypeEmployee } from '../types';
+import type { TypeEmployee } from '../../types';
 import { updateStepTwoValues } from '@/features/employees/step2';
 import { setInitialDocuments } from '@/features/employees/step3';
 import { updateStepFourValues } from '@/features/employees/step4';
@@ -244,6 +244,7 @@ const Employees = () => {
                             className="h-8 w-8"
                             aria-label="View employee details"
                             title="View"
+                            onClick={()=>navigate(`/employees/${employee.StepTwo.employeeId}`)}
                           >
                             <Eye className="w-4 h-4" />
                           </Button>
